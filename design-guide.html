@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pethroom Design Guide — 디자인 가이드</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── 분석된 Pethroom 컬러 토큰 ── */
+      --ph-orange:      #FF5A1F;
+      --ph-orange-lt:   #FF7A42;
+      --ph-orange-pale: #FFF0EB;
+      --ph-black:       #1A1A1A;
+      --ph-gray-90:     #2C2C2C;
+      --ph-gray-60:     #767676;
+      --ph-gray-40:     #ABABAB;
+      --ph-gray-20:     #E0E0E0;
+      --ph-gray-10:     #F5F5F5;
+      --ph-white:       #FFFFFF;
+      --ph-red:         #E8232C;
+      --ph-vip-gold:    #C9A84C;
+
+      /* ── 가이드 문서 자체 스타일 ── */
+      --doc-bg:         #F8F8F8;
+      --doc-surface:    #FFFFFF;
+      --doc-border:     #E8E8E8;
+      --doc-text:       #1A1A1A;
+      --doc-muted:      #888;
+      --doc-accent:     #FF5A1F;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--doc-bg);
+      color: var(--doc-text);
+      line-height: 1.7;
+    }
+
+    /* ── SIDEBAR NAV ── */
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0;
+      width: 240px;
+      height: 100vh;
+      background: var(--doc-surface);
+      border-right: 1px solid var(--doc-border);
+      overflow-y: auto;
+      padding: 28px 0;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid var(--doc-border);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo .brand {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--doc-accent);
+    }
+
+    .sidebar-logo .sub {
+      font-size: 0.72rem;
+      color: var(--doc-muted);
+      margin-top: 2px;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: 8px 24px;
+      font-size: 0.82rem;
+      color: var(--doc-muted);
+      text-decoration: none;
+      transition: color 0.15s, background 0.15s;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-nav a:hover {
+      color: var(--doc-accent);
+      background: var(--ph-orange-pale);
+      border-left-color: var(--doc-accent);
+    }
+
+    .sidebar-nav .nav-group {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--doc-muted);
+      padding: 16px 24px 4px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      margin-left: 240px;
+      padding: 48px 56px;
+      max-width: 1080px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      margin-bottom: 64px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--doc-border);
+    }
+
+    .page-header .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--doc-accent);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+      color: var(--doc-muted);
+      max-width: 560px;
+    }
+
+    .meta-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      background: var(--ph-orange-pale);
+      color: var(--doc-accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── SECTION ── */
+    .guide-section {
+      margin-bottom: 80px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .section-number {
+      width: 36px;
+      height: 36px;
+      background: var(--doc-accent);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-heading h2 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      font-size: 0.875rem;
+      color: var(--doc-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--doc-surface);
+      border: 1px solid var(--doc-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--doc-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── COLOR PALETTE ── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .color-swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--doc-border);
+    }
+
+    .swatch-block {
+      height: 80px;
+      transition: transform 0.2s;
+    }
+
+    .swatch-info {
+      padding: 10px 12px;
+      background: var(--doc-surface);
+    }
+
+    .swatch-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--doc-muted);
+    }
+
+    .swatch-use {
+      font-size: 0.68rem;
+      color: var(--doc-muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .type-sample {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--doc-border);
+    }
+
+    .type-sample:last-child { border-bottom: none; }
+
+    .type-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .type-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: var(--ph-gray-10);
+      color: var(--doc-muted);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    /* ── SPACING SCALE ── */
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--doc-border);
+    }
+
+    .spacing-row:last-child { border-bottom: none; }
+
+    .spacing-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--doc-muted);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .spacing-bar {
+      background: var(--ph-orange-pale);
+      border: 2px solid var(--doc-accent);
+      border-radius: 3px;
+      height: 20px;
+    }
+
+    .spacing-px {
+      font-size: 0.78rem;
+      color: var(--doc-muted);
+    }
+
+    /* ── BUTTON SHOWCASE ── */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn-label {
+      font-size: 0.75rem;
+      color: var(--doc-muted);
+      width: 130px;
+      flex-shrink: 0;
+    }
+
+    /* Pethroom 실제 버튼 스타일 */
+    .ph-btn-primary {
+      background: var(--ph-black);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .ph-btn-primary:hover { opacity: 0.85; }
+
+    .ph-btn-orange {
+      background: var(--ph-orange);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .ph-btn-outline {
+      background: transparent;
+      color: var(--ph-black);
+      border: 1.5px solid var(--ph-black);
+      padding: 11px 26px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .ph-btn-ghost {
+      background: transparent;
+      color: var(--ph-gray-60);
+      border: 1.5px solid var(--ph-gray-20);
+      padding: 11px 26px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .ph-btn-sm {
+      padding: 7px 16px;
+      font-size: 0.78rem;
+      border-radius: 3px;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* ── BADGE SHOWCASE ── */
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .ph-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    /* ── PRODUCT CARD MOCKUP ── */
+    .product-mockup-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .ph-product-card {
+      background: var(--doc-surface);
+      border: 1px solid var(--doc-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .ph-product-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .ph-card-img {
+      background: var(--ph-gray-10);
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+    }
+
+    .ph-card-badges {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ph-card-body {
+      padding: 14px;
+    }
+
+    .ph-card-brand {
+      font-size: 0.7rem;
+      color: var(--doc-accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .ph-card-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ph-black);
+      margin: 4px 0 10px;
+      line-height: 1.4;
+    }
+
+    .ph-card-price-original {
+      font-size: 0.75rem;
+      color: var(--ph-gray-40);
+      text-decoration: line-through;
+    }
+
+    .ph-card-price-sale {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--ph-red);
+    }
+
+    .ph-card-price-vip {
+      font-size: 0.72rem;
+      background: var(--ph-vip-gold);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 700;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .ph-card-price-vip-amount {
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: var(--ph-vip-gold);
+    }
+
+    /* ── HEADER MOCKUP ── */
+    .header-mockup {
+      border: 1px solid var(--doc-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .header-mock-top {
+      background: var(--ph-orange);
+      padding: 6px 20px;
+      font-size: 0.72rem;
+      color: #fff;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .header-mock-promo {
+      background: var(--ph-black);
+      padding: 6px 20px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .header-mock-promo span { color: var(--ph-orange); font-weight: 700; }
+
+    .header-mock-main {
+      background: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--doc-border);
+    }
+
+    .header-mock-logo {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--ph-black);
+    }
+
+    .header-mock-nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .header-mock-nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ph-gray-60);
+      text-decoration: none;
+    }
+
+    .header-mock-nav a.active {
+      color: var(--ph-black);
+      font-weight: 700;
+    }
+
+    .header-mock-icons {
+      display: flex;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--ph-gray-60);
+    }
+
+    .header-mock-sub {
+      background: var(--ph-gray-10);
+      padding: 8px 20px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .header-mock-sub a {
+      font-size: 0.72rem;
+      color: var(--ph-gray-60);
+      text-decoration: none;
+    }
+
+    /* ── LAYOUT DIAGRAM ── */
+    .layout-diagram {
+      background: var(--ph-gray-10);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .layout-block {
+      background: var(--doc-surface);
+      border: 1.5px dashed var(--doc-border);
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--doc-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .layout-block.highlight {
+      background: var(--ph-orange-pale);
+      border-color: var(--doc-accent);
+      color: var(--doc-accent);
+    }
+
+    .layout-block.dark {
+      background: var(--ph-black);
+      border-color: var(--ph-black);
+      color: rgba(255,255,255,0.7);
+    }
+
+    .layout-px {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+    }
+
+    /* ── GRID SYSTEM ── */
+    .grid-demo {
+      margin-top: 16px;
+    }
+
+    .grid-cols {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .grid-col-block {
+      background: var(--ph-orange-pale);
+      border: 1.5px solid var(--doc-accent);
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--doc-accent);
+      text-align: center;
+    }
+
+    .grid-label {
+      font-size: 0.75rem;
+      color: var(--doc-muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* ── SECTION FLOW ── */
+    .section-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .flow-item {
+      display: flex;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    .flow-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flow-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--doc-accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flow-tail {
+      width: 2px;
+      flex: 1;
+      background: var(--doc-border);
+      margin: 4px 0;
+    }
+
+    .flow-item:last-child .flow-tail { display: none; }
+
+    .flow-content {
+      background: var(--doc-surface);
+      border: 1px solid var(--doc-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      flex: 1;
+      margin-bottom: 8px;
+    }
+
+    .flow-content h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .flow-content p {
+      font-size: 0.78rem;
+      color: var(--doc-muted);
+    }
+
+    .flow-content .flow-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .flow-tag {
+      font-size: 0.65rem;
+      background: var(--ph-gray-10);
+      color: var(--doc-muted);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── BORDER RADIUS ── */
+    .radius-demo {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .radius-box {
+      background: var(--ph-orange-pale);
+      border: 2px solid var(--doc-accent);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--doc-accent);
+      font-weight: 700;
+    }
+
+    /* ── SHADOW SYSTEM ── */
+    .shadow-demo {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 8px 0 16px;
+    }
+
+    .shadow-box {
+      width: 140px;
+      height: 80px;
+      background: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--doc-muted);
+      font-weight: 600;
+    }
+
+    /* ── TABLE ── */
+    .guide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .guide-table th {
+      background: var(--ph-gray-10);
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--doc-muted);
+      border-bottom: 2px solid var(--doc-border);
+    }
+
+    .guide-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--doc-border);
+      vertical-align: top;
+    }
+
+    .guide-table tr:last-child td { border-bottom: none; }
+
+    .guide-table code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: var(--ph-gray-10);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--doc-accent);
+    }
+
+    /* ── DO / DON'T ── */
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .do-box, .dont-box {
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .do-box {
+      background: #F0FFF4;
+      border: 1.5px solid #48BB78;
+    }
+
+    .dont-box {
+      background: #FFF5F5;
+      border: 1.5px solid #FC8181;
+    }
+
+    .do-box h4 { color: #276749; font-size: 0.8rem; margin-bottom: 10px; }
+    .dont-box h4 { color: #9B2C2C; font-size: 0.8rem; margin-bottom: 10px; }
+
+    .do-box li, .dont-box li {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      margin-left: 16px;
+    }
+
+    .do-box li { color: #276749; }
+    .dont-box li { color: #9B2C2C; }
+
+    /* ── NAVIGATION STRUCTURE ── */
+    .nav-tree {
+      font-size: 0.82rem;
+    }
+
+    .nav-tree ul {
+      list-style: none;
+      padding-left: 16px;
+    }
+
+    .nav-tree > ul { padding-left: 0; }
+
+    .nav-tree li {
+      padding: 5px 0;
+      border-left: 2px solid var(--doc-border);
+      padding-left: 16px;
+      margin-left: 8px;
+    }
+
+    .nav-tree > ul > li {
+      border-left: 3px solid var(--doc-accent);
+      font-weight: 700;
+    }
+
+    .nav-tree li li { font-weight: 400; color: var(--doc-muted); }
+
+    /* ── FOOTER NOTE ── */
+    .doc-footer {
+      margin-top: 80px;
+      padding: 32px 0;
+      border-top: 2px solid var(--doc-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .doc-footer p { font-size: 0.78rem; color: var(--doc-muted); }
+
+    /* ── UTILITIES ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--doc-border);
+      margin: 24px 0;
+    }
+
+    .inline-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: var(--ph-gray-10);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--doc-accent);
+    }
+
+    .note {
+      background: #FFF8E1;
+      border-left: 4px solid #F59E0B;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      color: #92400E;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 32px 24px; }
+      .product-mockup-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col, .three-col, .do-dont { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">PETHROOM</div>
+    <div class="sub">Design Guide v1.0 · 2026</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">Overview</div>
+    <a href="#overview">브랜드 개요</a>
+    <div class="nav-group">Foundation</div>
+    <a href="#colors">01 Color System</a>
+    <a href="#typography">02 Typography</a>
+    <a href="#spacing">03 Spacing Scale</a>
+    <a href="#grid">04 Grid & Layout</a>
+    <div class="nav-group">Components</div>
+    <a href="#header">05 Header</a>
+    <a href="#buttons">06 Buttons</a>
+    <a href="#badges">07 Badges & Labels</a>
+    <a href="#cards">08 Product Cards</a>
+    <a href="#sections">09 Section Patterns</a>
+    <div class="nav-group">Visual</div>
+    <a href="#effects">10 Effects & Motion</a>
+    <a href="#navigation">11 Navigation Structure</a>
+    <a href="#dodonts">12 Do's & Don'ts</a>
+  </nav>
+</nav>
+
+<!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+<main class="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header" id="overview">
+    <div class="eyebrow">Design System Analysis</div>
+    <h1>Pethroom<br/>Design Guide</h1>
+    <p>pethroom.com 분석을 바탕으로 도출한 컬러·타이포·레이아웃·컴포넌트 패턴 정리서입니다. 반려동물 브랜드 사이트 제작 시 레퍼런스로 활용하세요.</p>
+    <div class="meta-tags">
+      <span class="meta-tag">E-Commerce</span>
+      <span class="meta-tag">Pet Brand</span>
+      <span class="meta-tag">Minimalist</span>
+      <span class="meta-tag">Korean Market</span>
+      <span class="meta-tag">VIP Membership</span>
+    </div>
+  </div>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 01 COLOR SYSTEM ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="colors">
+    <div class="section-heading">
+      <div class="section-number">01</div>
+      <h2>Color System</h2>
+    </div>
+    <p class="section-desc">페스룸은 무채색(블랙·화이트·그레이) 기반의 미니멀리스트 팔레트 위에 오렌지를 핵심 액센트로 사용합니다. 화려하지 않고 제품이 돋보이도록 배경은 항상 중립적으로 유지합니다.</p>
+
+    <!-- Primary -->
+    <div class="card">
+      <div class="card-title">Primary Palette</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FF5A1F;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Orange</span>
+            <span class="swatch-hex">#FF5A1F</span>
+            <span class="swatch-use">CTA 버튼, 할인 배지, 액센트</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FF7A42;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Orange Light</span>
+            <span class="swatch-hex">#FF7A42</span>
+            <span class="swatch-use">호버 상태, 그라디언트</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FFF0EB; border-bottom:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Orange Pale</span>
+            <span class="swatch-hex">#FFF0EB</span>
+            <span class="swatch-use">배경 틴트, 호버 피드백</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1A1A1A;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Black</span>
+            <span class="swatch-hex">#1A1A1A</span>
+            <span class="swatch-use">주요 텍스트, 기본 버튼</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#FFFFFF; border-bottom:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">White</span>
+            <span class="swatch-hex">#FFFFFF</span>
+            <span class="swatch-use">배경, 카드 표면</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neutral -->
+    <div class="card">
+      <div class="card-title">Neutral Scale</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#2C2C2C;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray 90</span>
+            <span class="swatch-hex">#2C2C2C</span>
+            <span class="swatch-use">서브 헤딩, 강조 텍스트</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#767676;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray 60</span>
+            <span class="swatch-hex">#767676</span>
+            <span class="swatch-use">보조 텍스트, 메타 정보</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ABABAB;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray 40</span>
+            <span class="swatch-hex">#ABABAB</span>
+            <span class="swatch-use">비활성화, 원래 가격</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#E0E0E0;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray 20</span>
+            <span class="swatch-hex">#E0E0E0</span>
+            <span class="swatch-use">보더, 구분선</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#F5F5F5; border-bottom:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray 10</span>
+            <span class="swatch-hex">#F5F5F5</span>
+            <span class="swatch-use">배경, 이미지 플레이스홀더</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic -->
+    <div class="card">
+      <div class="card-title">Semantic Colors</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#E8232C;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Red / Sale</span>
+            <span class="swatch-hex">#E8232C</span>
+            <span class="swatch-use">할인가, 품절, 경고</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#C9A84C;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">VIP Gold</span>
+            <span class="swatch-hex">#C9A84C</span>
+            <span class="swatch-use">VIP 멤버십, 프리미엄 배지</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1A1A1A;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Promo Dark</span>
+            <span class="swatch-hex">#1A1A1A</span>
+            <span class="swatch-use">프로모션 배너 배경</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      ⚠️ 오렌지(#FF5A1F)는 CTA와 강조에만 사용합니다. 텍스트 색상으로 대량 사용하면 가독성이 저하됩니다.
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 02 TYPOGRAPHY ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="typography">
+    <div class="section-heading">
+      <div class="section-number">02</div>
+      <h2>Typography</h2>
+    </div>
+    <p class="section-desc">한국어 중심 사이트이므로 Noto Sans KR 혹은 Pretendard를 기본 폰트로 사용합니다. 명조체는 사용하지 않으며 전반적으로 Sans-serif 계열로 통일해 모던하고 깔끔한 인상을 줍니다.</p>
+
+    <div class="card">
+      <div class="card-title">Font Stack</div>
+      <table class="guide-table">
+        <thead>
+          <tr>
+            <th>역할</th>
+            <th>Font Family</th>
+            <th>Fallback</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary (KO)</td>
+            <td><code>Pretendard</code></td>
+            <td><code>Noto Sans KR, Apple SD Gothic Neo</code></td>
+            <td>한글 최적화 Variable 폰트</td>
+          </tr>
+          <tr>
+            <td>Primary (EN)</td>
+            <td><code>Pretendard</code></td>
+            <td><code>Inter, Helvetica Neue</code></td>
+            <td>영문도 자연스럽게 처리</td>
+          </tr>
+          <tr>
+            <td>Mono / Code</td>
+            <td><code>JetBrains Mono</code></td>
+            <td><code>Consolas, monospace</code></td>
+            <td>가격·수치 강조 시 선택 사용</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Type Scale</div>
+
+      <div class="type-sample">
+        <div style="font-size:2.4rem; font-weight:900; letter-spacing:-1.5px; line-height:1.15;">Display — 섹션 히어로 타이틀</div>
+        <div class="type-meta">
+          <span class="type-tag">size: 38-40px</span>
+          <span class="type-tag">weight: 900</span>
+          <span class="type-tag">tracking: -1.5px</span>
+          <span class="type-tag">line-height: 1.15</span>
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div style="font-size:1.6rem; font-weight:800; letter-spacing:-0.5px; line-height:1.25;">Heading 1 — Best Seller, New Arrival</div>
+        <div class="type-meta">
+          <span class="type-tag">size: 26-28px</span>
+          <span class="type-tag">weight: 800</span>
+          <span class="type-tag">tracking: -0.5px</span>
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div style="font-size:1.15rem; font-weight:700; line-height:1.35;">Heading 2 — 카드 섹션 소제목, 상품명</div>
+        <div class="type-meta">
+          <span class="type-tag">size: 18-20px</span>
+          <span class="type-tag">weight: 700</span>
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div style="font-size:0.9rem; font-weight:500; line-height:1.65; color:#444;">Body — 상품 설명, 일반 텍스트, 안내 문구가 이 크기에서 편안하게 읽힙니다.</div>
+        <div class="type-meta">
+          <span class="type-tag">size: 14-15px</span>
+          <span class="type-tag">weight: 400-500</span>
+          <span class="type-tag">line-height: 1.65</span>
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div style="font-size:0.75rem; font-weight:600; letter-spacing:0.5px; color:#888; text-transform:uppercase;">CAPTION / LABEL — BRAND NAME, CATEGORY TAG</div>
+        <div class="type-meta">
+          <span class="type-tag">size: 11-12px</span>
+          <span class="type-tag">weight: 600-700</span>
+          <span class="type-tag">tracking: 0.5-1px</span>
+          <span class="type-tag">uppercase</span>
+        </div>
+      </div>
+
+      <div class="type-sample">
+        <div style="font-size:1.1rem; font-weight:900; color:#E8232C;">₩41,600 <span style="font-size:0.8rem; font-weight:400; color:#ABABAB; text-decoration:line-through;">₩52,000</span></div>
+        <div class="type-meta">
+          <span class="type-tag">sale: 18px / 900 / red</span>
+          <span class="type-tag">original: 13px / 400 / gray / line-through</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 03 SPACING ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="spacing">
+    <div class="section-heading">
+      <div class="section-number">03</div>
+      <h2>Spacing Scale</h2>
+    </div>
+    <p class="section-desc">4px 기본 단위(4pt grid)를 사용합니다. 컴포넌트 내부 패딩은 작은 단위, 섹션 간 간격은 큰 단위를 적용해 시각적 리듬을 만듭니다.</p>
+
+    <div class="card">
+      <div class="card-title">Space Tokens</div>
+      <div class="spacing-row"><span class="spacing-label">--space-1</span><div class="spacing-bar" style="width:4px;"></div><span class="spacing-px">4px · 마이크로 간격</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-2</span><div class="spacing-bar" style="width:8px;"></div><span class="spacing-px">8px · 인라인 요소 간격</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-3</span><div class="spacing-bar" style="width:12px;"></div><span class="spacing-px">12px · 소형 패딩</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-4</span><div class="spacing-bar" style="width:16px;"></div><span class="spacing-px">16px · 카드 내부 기본 패딩</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-6</span><div class="spacing-bar" style="width:24px;"></div><span class="spacing-px">24px · 카드 간격, 그리드 gap</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-8</span><div class="spacing-bar" style="width:32px;"></div><span class="spacing-px">32px · 서브섹션 마진</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-12</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-px">48px · 섹션 상하 패딩 (모바일)</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-16</span><div class="spacing-bar" style="width:64px;"></div><span class="spacing-px">64px · 섹션 상하 패딩 (데스크탑)</span></div>
+      <div class="spacing-row"><span class="spacing-label">--space-20</span><div class="spacing-bar" style="width:80px;"></div><span class="spacing-px">80px · 주요 섹션 간격</span></div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 04 GRID & LAYOUT ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="grid">
+    <div class="section-heading">
+      <div class="section-number">04</div>
+      <h2>Grid & Layout</h2>
+    </div>
+    <p class="section-desc">컨텐츠 최대 너비는 1200-1280px이며 좌우 24px 패딩으로 페이지 여백을 확보합니다. 제품 그리드는 맥락에 따라 4~6열로 유연하게 변합니다.</p>
+
+    <div class="card">
+      <div class="card-title">Container & Breakpoints</div>
+      <table class="guide-table">
+        <thead>
+          <tr><th>이름</th><th>너비</th><th>컬럼</th><th>용도</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mobile</td><td><code>≤ 768px</code></td><td>2열</td><td>상품 2개씩, 스택 레이아웃</td></tr>
+          <tr><td>Tablet</td><td><code>769–1024px</code></td><td>3열</td><td>상품 3개씩</td></tr>
+          <tr><td>Desktop</td><td><code>1025–1280px</code></td><td>4열</td><td>상품 4개씩 (Best Seller)</td></tr>
+          <tr><td>Wide</td><td><code>≥ 1281px</code></td><td>5-6열</td><td>카테고리, 인기 상품 섹션</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-demo">
+        <div class="grid-label">4-col (Desktop / Best Seller)</div>
+        <div class="grid-cols" style="grid-template-columns: repeat(4,1fr);">
+          <div class="grid-col-block">1</div><div class="grid-col-block">2</div><div class="grid-col-block">3</div><div class="grid-col-block">4</div>
+        </div>
+        <div class="grid-label">6-col (Wide / Category Grid)</div>
+        <div class="grid-cols" style="grid-template-columns: repeat(6,1fr);">
+          <div class="grid-col-block">1</div><div class="grid-col-block">2</div><div class="grid-col-block">3</div><div class="grid-col-block">4</div><div class="grid-col-block">5</div><div class="grid-col-block">6</div>
+        </div>
+        <div class="grid-label">2-col (Promo Banner)</div>
+        <div class="grid-cols" style="grid-template-columns: repeat(2,1fr);">
+          <div class="grid-col-block">프로모 A</div><div class="grid-col-block">프로모 B</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Page Layout Diagram</div>
+      <div class="layout-diagram">
+        <div class="layout-block highlight">🔔 상단 공지 배너 (Orange bg) <span class="layout-px">h: 36px</span></div>
+        <div class="layout-block dark">🖤 프로모션 바 (Black bg · 쿠폰/이벤트) <span class="layout-px">h: 40px</span></div>
+        <div class="layout-block">🏠 헤더 (White · Logo + Nav + Icons) <span class="layout-px">h: 60-72px · sticky</span></div>
+        <div class="layout-block">📂 서브 카테고리 바 (Gray bg) <span class="layout-px">h: 40px</span></div>
+        <div class="layout-block highlight">🎯 히어로 / 메인 배너 슬라이더</div>
+        <div class="layout-block">⭐ Best Seller (4-col grid)</div>
+        <div class="layout-block">🆕 New Arrival (4-6 col grid)</div>
+        <div class="layout-block">🥗 Curation (영양/건강 특집)</div>
+        <div class="layout-block highlight">📱 App 프로모션 배너</div>
+        <div class="layout-block">💡 IoT 기기 섹션</div>
+        <div class="layout-block">🌱 CSR / 사회공헌 섹션</div>
+        <div class="layout-block dark">🦶 Footer (Dark bg · 링크 + 사업자 정보)</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 05 HEADER ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="header">
+    <div class="section-heading">
+      <div class="section-number">05</div>
+      <h2>Header Component</h2>
+    </div>
+    <p class="section-desc">헤더는 3-tier 구조로 구성됩니다: 상단 공지 바 → 프로모션 바 → 메인 헤더. sticky 적용 시 메인 헤더만 고정합니다.</p>
+
+    <div class="card">
+      <div class="card-title">Header Mockup</div>
+      <div class="header-mockup">
+        <div class="header-mock-top">🔔 신규 회원가입 시 10% 즉시 할인 쿠폰 지급</div>
+        <div class="header-mock-promo">
+          <span>VIP 회원 <span>35% 추가 할인</span></span>
+          <span>정기배송 신청 시 <span>무료배송</span></span>
+          <span>오늘의 특가 <span>마감 D-1</span></span>
+        </div>
+        <div class="header-mock-main">
+          <div class="header-mock-logo">PETHROOM</div>
+          <div class="header-mock-nav">
+            <a href="#">SHOP</a>
+            <a href="#" class="active">VIP CENTER</a>
+            <a href="#">FRIENDS</a>
+            <a href="#">EVENT</a>
+            <a href="#">About</a>
+            <a href="#">Community</a>
+          </div>
+          <div class="header-mock-icons">
+            <span>🚚 정기배송</span>
+            <span>🔍 검색</span>
+            <span>👤 로그인</span>
+            <span>🛒 0</span>
+          </div>
+        </div>
+        <div class="header-mock-sub">
+          <a href="#">ALL</a><a href="#">NEW</a><a href="#">BEST</a>
+          <a href="#">FOR DOG</a><a href="#">FOR CAT</a>
+          <a href="#">사료/영양</a><a href="#">간식</a><a href="#">위생용품</a>
+          <a href="#">COLLABO</a>
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <table class="guide-table">
+        <thead><tr><th>레이어</th><th>배경색</th><th>텍스트색</th><th>높이</th></tr></thead>
+        <tbody>
+          <tr><td>공지 배너</td><td><code>#FF5A1F</code></td><td><code>#FFFFFF</code></td><td>36px</td></tr>
+          <tr><td>프로모션 바</td><td><code>#1A1A1A</code></td><td><code>rgba(255,255,255,0.7)</code></td><td>40px</td></tr>
+          <tr><td>메인 헤더</td><td><code>#FFFFFF</code></td><td><code>#1A1A1A</code></td><td>60-72px</td></tr>
+          <tr><td>서브 카테고리 바</td><td><code>#F5F5F5</code></td><td><code>#767676</code></td><td>40px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 06 BUTTONS ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="buttons">
+    <div class="section-heading">
+      <div class="section-number">06</div>
+      <h2>Buttons</h2>
+    </div>
+    <p class="section-desc">버튼은 최소화된 border-radius(4px)를 사용해 테크니컬하고 신뢰감 있는 인상을 줍니다. 원형 버튼은 사용하지 않습니다.</p>
+
+    <div class="card">
+      <div class="btn-row">
+        <span class="btn-label">Primary (Black)</span>
+        <button class="ph-btn-primary">장바구니 담기</button>
+        <button class="ph-btn-primary">구매하기</button>
+      </div>
+      <div class="btn-row">
+        <span class="btn-label">CTA (Orange)</span>
+        <button class="ph-btn-orange">VIP 혜택 보기</button>
+        <button class="ph-btn-orange">앱 다운로드</button>
+      </div>
+      <div class="btn-row">
+        <span class="btn-label">Secondary (Outline)</span>
+        <button class="ph-btn-outline">상세보기</button>
+        <button class="ph-btn-outline">전체보기</button>
+      </div>
+      <div class="btn-row">
+        <span class="btn-label">Ghost (Gray)</span>
+        <button class="ph-btn-ghost">취소</button>
+        <button class="ph-btn-ghost">더보기</button>
+      </div>
+      <div class="btn-row">
+        <span class="btn-label">Small</span>
+        <button class="ph-btn-sm" style="background:#1A1A1A; color:#fff;">담기</button>
+        <button class="ph-btn-sm" style="background:#FF5A1F; color:#fff;">쿠폰받기</button>
+        <button class="ph-btn-sm" style="background:transparent; border:1px solid #1A1A1A;">품절알림</button>
+      </div>
+
+      <hr class="divider" />
+      <table class="guide-table">
+        <thead><tr><th>속성</th><th>값</th></tr></thead>
+        <tbody>
+          <tr><td>border-radius</td><td><code>4px</code> (원형 버튼 비사용)</td></tr>
+          <tr><td>font-weight</td><td><code>700</code></td></tr>
+          <tr><td>padding (md)</td><td><code>12px 28px</code></td></tr>
+          <tr><td>padding (sm)</td><td><code>7px 16px</code></td></tr>
+          <tr><td>hover opacity</td><td><code>0.85</code> 또는 배경색 10% 어둡게</td></tr>
+          <tr><td>transition</td><td><code>opacity 0.2s ease</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 07 BADGES ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="badges">
+    <div class="section-heading">
+      <div class="section-number">07</div>
+      <h2>Badges & Labels</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Product Badges</div>
+      <div class="badge-row">
+        <span class="ph-badge" style="background:#E8232C; color:#fff;">SALE</span>
+        <span class="ph-badge" style="background:#1A1A1A; color:#fff;">BEST</span>
+        <span class="ph-badge" style="background:#FF5A1F; color:#fff;">NEW</span>
+        <span class="ph-badge" style="background:#C9A84C; color:#fff;">VIP</span>
+        <span class="ph-badge" style="background:#F5F5F5; color:#767676; border:1px solid #E0E0E0;">품절</span>
+        <span class="ph-badge" style="background:#2C7A7B; color:#fff;">MD PICK</span>
+      </div>
+      <div class="badge-row">
+        <span style="font-size:0.8rem; background:#FFF0EB; color:#FF5A1F; padding:4px 12px; border-radius:3px; font-weight:700;">VIP 35% 추가할인</span>
+        <span style="font-size:0.8rem; background:#FFF5F5; color:#E8232C; padding:4px 12px; border-radius:3px; font-weight:700;">오늘만 특가</span>
+        <span style="font-size:0.8rem; background:#F0F4FF; color:#3B5EDB; padding:4px 12px; border-radius:3px; font-weight:700;">정기배송 전용</span>
+      </div>
+
+      <hr class="divider" />
+      <table class="guide-table">
+        <thead><tr><th>배지</th><th>배경색</th><th>텍스트색</th><th>용도</th></tr></thead>
+        <tbody>
+          <tr><td>SALE</td><td><code>#E8232C</code></td><td>White</td><td>할인 적용 상품</td></tr>
+          <tr><td>BEST</td><td><code>#1A1A1A</code></td><td>White</td><td>베스트셀러</td></tr>
+          <tr><td>NEW</td><td><code>#FF5A1F</code></td><td>White</td><td>신규 입고 상품</td></tr>
+          <tr><td>VIP</td><td><code>#C9A84C</code></td><td>White</td><td>VIP 전용 혜택</td></tr>
+          <tr><td>품절</td><td><code>#F5F5F5</code></td><td>Gray 60</td><td>재고 없음</td></tr>
+          <tr><td>border-radius</td><td colspan="3"><code>3-4px</code></td></tr>
+          <tr><td>font-size</td><td colspan="3"><code>10-11px</code>, weight: 800, uppercase</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 08 PRODUCT CARDS ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="cards">
+    <div class="section-heading">
+      <div class="section-number">08</div>
+      <h2>Product Cards</h2>
+    </div>
+    <p class="section-desc">페스룸의 핵심 컴포넌트입니다. 가격 구조가 3단계(원가 → 할인가 → VIP가)로 이루어져 있어 카드 내 정보 계층이 중요합니다.</p>
+
+    <div class="card">
+      <div class="card-title">Product Card Anatomy</div>
+      <div class="product-mockup-grid">
+
+        <div class="ph-product-card">
+          <div class="ph-card-img">
+            🐕
+            <div class="ph-card-badges">
+              <span class="ph-badge" style="background:#1A1A1A; color:#fff; font-size:0.65rem; padding:3px 8px;">BEST</span>
+            </div>
+          </div>
+          <div class="ph-card-body">
+            <div class="ph-card-brand">Royal Canin</div>
+            <div class="ph-card-name">로얄캐닌 미니 어덜트 4kg</div>
+            <div class="ph-card-price-original">52,000원</div>
+            <div class="ph-card-price-sale">41,600원</div>
+            <div><span class="ph-card-price-vip">VIP가</span> <span class="ph-card-price-vip-amount">33,800원</span></div>
+          </div>
+        </div>
+
+        <div class="ph-product-card">
+          <div class="ph-card-img">
+            😺
+            <div class="ph-card-badges">
+              <span class="ph-badge" style="background:#FF5A1F; color:#fff; font-size:0.65rem; padding:3px 8px;">NEW</span>
+            </div>
+          </div>
+          <div class="ph-card-body">
+            <div class="ph-card-brand">Ciao</div>
+            <div class="ph-card-name">챠오 고양이 참치 간식 14g×20</div>
+            <div class="ph-card-price-sale">9,800원</div>
+            <div><span class="ph-card-price-vip">VIP가</span> <span class="ph-card-price-vip-amount">6,370원</span></div>
+          </div>
+        </div>
+
+        <div class="ph-product-card">
+          <div class="ph-card-img" style="position:relative;">
+            🎾
+            <div style="position:absolute;inset:0;background:rgba(255,255,255,0.7);display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:0.8rem; font-weight:800; color:#767676; background:#fff; padding:6px 14px; border:1px solid #E0E0E0;">품절</span>
+            </div>
+          </div>
+          <div class="ph-card-body">
+            <div class="ph-card-brand">Kong</div>
+            <div class="ph-card-name">콩 클래식 노즈워크 M</div>
+            <div class="ph-card-price-original">18,500원</div>
+            <div style="font-size:0.75rem; color:#ABABAB;">일시 품절</div>
+          </div>
+        </div>
+
+        <div class="ph-product-card">
+          <div class="ph-card-img">🛁</div>
+          <div class="ph-card-body">
+            <div class="ph-card-brand">Biogance</div>
+            <div class="ph-card-name">바이오강스 강아지 샴푸 250ml</div>
+            <div class="ph-card-price-original">22,000원</div>
+            <div class="ph-card-price-sale">17,600원</div>
+            <div><span class="ph-card-price-vip">VIP가</span> <span class="ph-card-price-vip-amount">11,440원</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="divider" />
+      <table class="guide-table">
+        <thead><tr><th>요소</th><th>스타일</th></tr></thead>
+        <tbody>
+          <tr><td>카드 배경</td><td><code>#FFFFFF</code>, border: 1px solid <code>#E0E0E0</code></td></tr>
+          <tr><td>border-radius</td><td><code>6-8px</code></td></tr>
+          <tr><td>이미지 영역</td><td>정방형(1:1) 또는 4:3, 배경 <code>#F5F5F5</code></td></tr>
+          <tr><td>이미지 비율</td><td><code>aspect-ratio: 1/1</code> 권장</td></tr>
+          <tr><td>hover shadow</td><td><code>0 8px 32px rgba(0,0,0,0.10)</code></td></tr>
+          <tr><td>품절 처리</td><td>이미지 위 흰색 오버레이 + "품절" 텍스트 (투명도 0.7)</td></tr>
+          <tr><td>VIP 가격 표시</td><td>Gold 배지 + 금색 텍스트 (<code>#C9A84C</code>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 09 SECTION PATTERNS ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="sections">
+    <div class="section-heading">
+      <div class="section-number">09</div>
+      <h2>Section Patterns</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Page Section Flow</div>
+      <div class="section-flow">
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">1</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>공지/프로모 배너 스트립</h4>
+            <p>상단에 2개의 얇은 배너 바. 오렌지(공지)와 블랙(혜택 안내)으로 구성.</p>
+            <div class="flow-tags"><span class="flow-tag">h: 36-40px</span><span class="flow-tag">bg: orange / black</span><span class="flow-tag">full-width</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">2</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>Sticky Header</h4>
+            <p>로고 좌, 메인 내비게이션 중앙, 유틸리티 아이콘 우. 스크롤 시 고정.</p>
+            <div class="flow-tags"><span class="flow-tag">sticky top:0</span><span class="flow-tag">z-index:100</span><span class="flow-tag">bg: white</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">3</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>메인 히어로 배너 슬라이더</h4>
+            <p>전폭 이미지 슬라이더. 프로모션 캠페인 이미지와 짧은 카피 텍스트.</p>
+            <div class="flow-tags"><span class="flow-tag">full-width</span><span class="flow-tag">auto-play slider</span><span class="flow-tag">h: 400-600px</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">4</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>Best Seller 섹션</h4>
+            <p>섹션 타이틀 + "전체보기" 링크 + 4열 상품 그리드</p>
+            <div class="flow-tags"><span class="flow-tag">bg: white</span><span class="flow-tag">padding: 64px 0</span><span class="flow-tag">4-col grid</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">5</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>New Arrival 섹션</h4>
+            <p>신상품 4-6개 가로 스크롤 또는 그리드. 배경색이 약간 다른 Gray.</p>
+            <div class="flow-tags"><span class="flow-tag">bg: #F5F5F5</span><span class="flow-tag">4-6 col</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">6</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>큐레이션 / 테마 특집</h4>
+            <p>에디터 큐레이션. 대형 이미지 + 설명 텍스트 2열 레이아웃.</p>
+            <div class="flow-tags"><span class="flow-tag">2-col editorial</span><span class="flow-tag">image-heavy</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">7</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>앱 다운로드 프로모 배너</h4>
+            <p>전폭 배너. 앱 미리보기 이미지 + CTA 버튼.</p>
+            <div class="flow-tags"><span class="flow-tag">full-width</span><span class="flow-tag">dark bg</span><span class="flow-tag">app mockup</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">8</div><div class="flow-tail"></div></div>
+          <div class="flow-content">
+            <h4>CSR / 브랜드 스토리</h4>
+            <p>유기동물 지원 활동 사진 그리드. 브랜드 가치를 전달하는 감성 섹션.</p>
+            <div class="flow-tags"><span class="flow-tag">photo grid</span><span class="flow-tag">emotional</span></div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">9</div></div>
+          <div class="flow-content">
+            <h4>Footer</h4>
+            <p>다크 배경에 링크 4열, 하단에 사업자 정보 + 수상 배지(Red Dot 등)</p>
+            <div class="flow-tags"><span class="flow-tag">bg: #0F0F1A</span><span class="flow-tag">4-col links</span><span class="flow-tag">award badges</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 10 EFFECTS & MOTION ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="effects">
+    <div class="section-heading">
+      <div class="section-number">10</div>
+      <h2>Effects & Motion</h2>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Border Radius</div>
+        <div class="radius-demo">
+          <div class="radius-box" style="border-radius:3px;"><span>3px</span><span style="font-size:0.6rem;margin-top:2px;">배지</span></div>
+          <div class="radius-box" style="border-radius:4px;"><span>4px</span><span style="font-size:0.6rem;margin-top:2px;">버튼/카드</span></div>
+          <div class="radius-box" style="border-radius:8px;"><span>8px</span><span style="font-size:0.6rem;margin-top:2px;">큰 카드</span></div>
+          <div class="radius-box" style="border-radius:50%;"><span>50%</span><span style="font-size:0.6rem;margin-top:2px;">아이콘</span></div>
+        </div>
+        <p style="font-size:0.78rem; color:var(--doc-muted); margin-top:12px;">페스룸은 각진 디자인 철학을 유지합니다. 최대 border-radius는 8px이며 pill 형태(50px+)는 사용하지 않습니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Shadow System</div>
+        <div class="shadow-demo">
+          <div class="shadow-box" style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <span>Elevation 1</span>
+            <span style="font-size:0.65rem; color:#bbb; margin-top:4px;">카드 기본</span>
+          </div>
+          <div class="shadow-box" style="box-shadow: 0 4px 16px rgba(0,0,0,0.09);">
+            <span>Elevation 2</span>
+            <span style="font-size:0.65rem; color:#bbb; margin-top:4px;">호버 상태</span>
+          </div>
+          <div class="shadow-box" style="box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
+            <span>Elevation 3</span>
+            <span style="font-size:0.65rem; color:#bbb; margin-top:4px;">모달/팝업</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Motion Tokens</div>
+      <table class="guide-table">
+        <thead><tr><th>토큰</th><th>값</th><th>용도</th></tr></thead>
+        <tbody>
+          <tr><td>--duration-fast</td><td><code>150ms</code></td><td>버튼 hover, 아이콘 상태 변화</td></tr>
+          <tr><td>--duration-base</td><td><code>200ms</code></td><td>카드 hover, 색상 전환</td></tr>
+          <tr><td>--duration-slow</td><td><code>300ms</code></td><td>슬라이더, 드롭다운 열림/닫힘</td></tr>
+          <tr><td>--ease-default</td><td><code>ease</code></td><td>기본 전환</td></tr>
+          <tr><td>--ease-out</td><td><code>cubic-bezier(0,0,0.2,1)</code></td><td>입장 애니메이션</td></tr>
+          <tr><td>card hover</td><td><code>translateY(-4px)</code></td><td>상품 카드 마우스 오버</td></tr>
+          <tr><td>button hover</td><td><code>opacity: 0.85</code></td><td>버튼 피드백</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 11 NAVIGATION STRUCTURE ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="navigation">
+    <div class="section-heading">
+      <div class="section-number">11</div>
+      <h2>Navigation Structure</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">GNB 계층 구조</div>
+      <div class="nav-tree">
+        <ul>
+          <li>SHOP
+            <ul>
+              <li>ALL / NEW / BEST / COLLABO</li>
+              <li>FOR DOG</li>
+              <li>FOR CAT</li>
+              <li>카테고리: 사료 · 간식 · 영양/건강 · 뷰티/케어 · 산책/놀이 · IoT</li>
+              <li>정기배송: 고양이 모래 · 강아지 패드 · 커스텀 믹스</li>
+            </ul>
+          </li>
+          <li>VIP CENTER
+            <ul>
+              <li>VIP 혜택 안내</li>
+              <li>VIP 전용 상품</li>
+              <li>멤버십 가입</li>
+            </ul>
+          </li>
+          <li>PETHROOM FRIENDS (APP)
+            <ul>
+              <li>앱 소개</li>
+              <li>다운로드 링크</li>
+            </ul>
+          </li>
+          <li>EVENT
+            <ul>
+              <li>진행중인 이벤트</li>
+              <li>종료된 이벤트</li>
+            </ul>
+          </li>
+          <li>About</li>
+          <li>Community
+            <ul>
+              <li>후기 게시판</li>
+              <li>펫 스토리</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ 12 DO'S & DON'TS ━━━━━━━━━━━━━━━━━━ -->
+  <section class="guide-section" id="dodonts">
+    <div class="section-heading">
+      <div class="section-number">12</div>
+      <h2>Do's & Don'ts</h2>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <h4>✅ Do — 따라야 할 원칙</h4>
+        <ul>
+          <li>배경은 흰색 또는 연회색 계열 유지</li>
+          <li>오렌지는 CTA, 배지, 포인트에만 소량 사용</li>
+          <li>상품 이미지가 돋보이도록 카드 배경은 항상 중립적으로</li>
+          <li>VIP 가격은 별도 골드 컬러로 항상 구분 표시</li>
+          <li>버튼은 4px 내외의 미니멀한 border-radius 유지</li>
+          <li>텍스트 굵기로 정보 계층을 명확히 구분 (900/700/400)</li>
+          <li>그리드 간격은 20-24px 일관 유지</li>
+          <li>수상 배지(Red Dot 등)는 Footer에 배치해 신뢰도 강조</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>❌ Don't — 피해야 할 패턴</h4>
+        <ul>
+          <li>오렌지를 텍스트 색상으로 대량 사용하지 않기</li>
+          <li>pill 형태(border-radius 50px+) 버튼 사용 금지</li>
+          <li>그림자를 과도하게 사용해 무거운 느낌 주지 않기</li>
+          <li>배경에 패턴이나 텍스처 넣지 않기 (미니멀 유지)</li>
+          <li>상품 카드 내 정보를 5가지 이상 노출하지 않기</li>
+          <li>세리프(명조) 폰트 사용 금지</li>
+          <li>섹션마다 다른 배경색을 사용해 파편화하지 않기</li>
+          <li>모바일에서 한 줄에 상품 3개 이상 배치 금지</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━ -->
+  <div class="doc-footer">
+    <p>Pethroom Design Guide · Analyzed from pethroom.com · Generated 2026-04-15</p>
+    <p>Based on visual & structural analysis · For reference use</p>
+  </div>
+
+</main>
+</body>
+</html>

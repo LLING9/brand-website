@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pawly V2 - 프리미엄 반려동물용품</title>
+  <link rel="stylesheet" href="style-v2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ① 프로모션 배너 스트립 -->
+  <div class="promo-strip">
+    <div class="promo-strip-inner">
+      <span class="promo-strip-item">🎁 VIP 회원 전용 추가 35% 할인 진행 중</span>
+      <span class="promo-strip-divider">|</span>
+      <span class="promo-strip-item">🚚 5만원 이상 무료배송 · 당일발송</span>
+      <span class="promo-strip-divider">|</span>
+      <span class="promo-strip-item">🏆 Red Dot · German Design Award 수상 브랜드</span>
+    </div>
+  </div>
+
+  <!-- ② 헤더 / 내비게이션 -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">pawly</a>
+      <nav class="nav">
+        <a href="#" class="nav-link">Shop</a>
+        <a href="#" class="nav-link">VIP CENTER</a>
+        <a href="#" class="nav-link">APP</a>
+        <a href="#" class="nav-link">EVENT</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Community</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="검색">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="장바구니">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge">3</span>
+        </button>
+        <a href="#" class="btn-vip">VIP 가입</a>
+      </div>
+    </div>
+
+    <!-- 카테고리 탭 -->
+    <div class="cat-tabs-wrap">
+      <div class="container">
+        <div class="cat-tabs">
+          <a href="#" class="cat-tab active">ALL</a>
+          <a href="#" class="cat-tab">NEW</a>
+          <a href="#" class="cat-tab">BEST</a>
+          <a href="#" class="cat-tab">FOR DOG</a>
+          <a href="#" class="cat-tab">FOR CAT</a>
+          <a href="#" class="cat-tab">NUTRITION</a>
+          <a href="#" class="cat-tab">IoT</a>
+          <a href="#" class="cat-tab">COLLABO</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ③ 히어로 - 브랜드 철학 -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="section-label">OUR PHILOSOPHY</span>
+        <h1 class="hero-title">THE REASON<br/>WE EXIST</h1>
+        <p class="hero-desc">
+          반려동물은 단순한 동물이 아닙니다.<br/>
+          가족입니다. 그들에게 가장 좋은 것만을 드리기 위해<br/>
+          pawly는 오늘도 최고의 기준을 만들어갑니다.
+        </p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-dark">지금 쇼핑하기</a>
+          <a href="#" class="btn-text-link">VIP 혜택 알아보기 →</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-card">
+          <div class="hero-pet-icon">🐾</div>
+          <div class="hero-stat-badge top-right">
+            <span class="stat-num">4.9</span>
+            <span class="stat-label">고객 평점</span>
+          </div>
+          <div class="hero-stat-badge bottom-left">
+            <span class="stat-num">50K+</span>
+            <span class="stat-label">브랜드 멤버</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 디자인 어워드 -->
+  <section class="awards">
+    <div class="container">
+      <p class="awards-label">INTERNATIONALLY RECOGNIZED</p>
+      <div class="awards-grid">
+        <div class="award-item">
+          <div class="award-icon">🔴</div>
+          <span class="award-name">Red Dot Award</span>
+          <span class="award-year">2023</span>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🇩🇪</div>
+          <span class="award-name">German Design Award</span>
+          <span class="award-year">2023</span>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🏅</div>
+          <span class="award-name">IDEA Award</span>
+          <span class="award-year">2022</span>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">✅</div>
+          <span class="award-name">Good Design Award</span>
+          <span class="award-year">2022</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ VIP 혜택 -->
+  <section class="vip-benefits">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-label">MEMBERSHIP</span>
+        <h2 class="section-title">VIP 멤버십 혜택</h2>
+        <p class="section-desc">구독 한 번으로 누리는 8가지 프리미엄 혜택</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>🚚</span>
+          </div>
+          <h4>무제한 무료배송</h4>
+          <p>금액 제한 없이<br/>전 상품 무료배송</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>💰</span>
+          </div>
+          <h4>추가 35% 할인</h4>
+          <p>모든 상품에<br/>VIP 전용 최저가</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>🎁</span>
+          </div>
+          <h4>월 정기 선물</h4>
+          <p>큐레이션된<br/>서프라이즈 박스</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>👨‍⚕️</span>
+          </div>
+          <h4>수의사 1:1 상담</h4>
+          <p>월 3회 무제한<br/>전문가 상담</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>📱</span>
+          </div>
+          <h4>앱 전용 혜택</h4>
+          <p>pawly 앱에서<br/>추가 포인트 적립</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>🔔</span>
+          </div>
+          <h4>신상품 선구매</h4>
+          <p>일반 출시 72시간 전<br/>VIP 선공개</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>🔄</span>
+          </div>
+          <h4>정기구독 자동화</h4>
+          <p>소모품 자동 배송<br/>일정 완전 관리</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-wrap">
+            <span>🏥</span>
+          </div>
+          <h4>건강검진 할인</h4>
+          <p>제휴 동물병원<br/>20% 할인 제공</p>
+        </div>
+      </div>
+      <div class="vip-cta-wrap">
+        <a href="#" class="btn-gold">VIP 멤버십 시작하기</a>
+        <span class="vip-cta-sub">월 9,900원 · 언제든 해지 가능</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 베스트셀러 (3단계 가격) -->
+  <section class="products-section">
+    <div class="container">
+      <div class="section-header-flex">
+        <div>
+          <span class="section-label">BEST SELLERS</span>
+          <h2 class="section-title">지금 가장 인기있는 상품</h2>
+        </div>
+        <a href="#" class="view-all-link">전체보기 →</a>
+      </div>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">🦴</span>
+            </div>
+            <span class="product-badge badge-best">BEST</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">Royal Canin</span>
+            <h3 class="product-name">로얄캐닌 미니 어덜트 사료 4kg</h3>
+            <div class="price-stack">
+              <span class="price-original">52,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">41,600원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">33,800원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(1,204)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">😺</span>
+            </div>
+            <span class="product-badge badge-new">NEW</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">Ziwi Peak</span>
+            <h3 class="product-name">지위피크 고양이 습식사료 185g</h3>
+            <div class="price-stack">
+              <span class="price-original">8,500원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">6,800원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">5,500원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(876)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">🎯</span>
+            </div>
+            <span class="product-badge badge-best">BEST</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">Kong</span>
+            <h3 class="product-name">콩 클래식 노즈워크 장난감 M</h3>
+            <div class="price-stack">
+              <span class="price-original">24,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">18,500원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">15,000원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(2,341)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">💊</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">NutraPet</span>
+            <h3 class="product-name">종합 영양제 강아지용 90정</h3>
+            <div class="price-stack">
+              <span class="price-original">38,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">30,400원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">24,700원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★☆</span>
+              <span class="review-count">(542)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ 고객 리뷰 -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-label">CUSTOMER REVIEWS</span>
+        <h2 class="section-title">고객들의 이야기</h2>
+        <p class="section-desc">실제 pawly 멤버들이 남긴 솔직한 후기</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"사료 바꾸고 나서 우리 멍이가 확실히 더 활발해졌어요. 성분도 믿을 수 있고 VIP 가격이라 매달 부담 없이 구매하고 있습니다."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">김</div>
+            <div>
+              <span class="reviewer-name">김지연 · 골든 리트리버</span>
+              <span class="reviewer-date">2026.03.12</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"노즈워크 장난감 처음엔 반응이 없을까 걱정했는데 완전 최애 장난감이 됐어요. 배송도 빠르고 포장도 꼼꼼하게 돼 있어서 좋았습니다."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">박</div>
+            <div>
+              <span class="reviewer-name">박민준 · 말티즈</span>
+              <span class="reviewer-date">2026.03.08</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"수의사 상담 서비스 덕분에 우리 고양이 식이 문제를 해결했어요. VIP 가입하고 나서 펫 케어가 훨씬 체계적이 됐습니다."</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">이</div>
+            <div>
+              <span class="reviewer-name">이소현 · 코숏</span>
+              <span class="reviewer-date">2026.02.28</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ 신상품 -->
+  <section class="products-section bg-light">
+    <div class="container">
+      <div class="section-header-flex">
+        <div>
+          <span class="section-label">NEW ARRIVALS</span>
+          <h2 class="section-title">새로 나왔어요</h2>
+        </div>
+        <a href="#" class="view-all-link">전체보기 →</a>
+      </div>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">🏠</span>
+            </div>
+            <span class="product-badge badge-new">NEW</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">PetHome</span>
+            <h3 class="product-name">고급 원목 강아지 하우스 L</h3>
+            <div class="price-stack">
+              <span class="price-original">110,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">89,000원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">71,500원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(38)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">🧣</span>
+            </div>
+            <span class="product-badge badge-new">NEW</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">PawFashion</span>
+            <h3 class="product-name">강아지 봄 후리스 점퍼 S-XL</h3>
+            <div class="price-stack">
+              <span class="price-original">35,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">28,000원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">22,750원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★☆</span>
+              <span class="review-count">(124)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">📡</span>
+            </div>
+            <span class="product-badge badge-new">NEW</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">pawly IoT</span>
+            <h3 class="product-name">스마트 급식기 자동 IoT S30</h3>
+            <div class="price-stack">
+              <span class="price-original">185,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">148,000원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">120,250원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(289)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <div class="product-img-bg">
+              <span class="product-emoji">🛁</span>
+            </div>
+            <span class="product-badge badge-new">NEW</span>
+          </div>
+          <div class="product-info">
+            <span class="brand-label">Biogance</span>
+            <h3 class="product-name">바이오강스 오트밀 샴푸 250ml</h3>
+            <div class="price-stack">
+              <span class="price-original">28,000원</span>
+              <div class="price-row">
+                <span class="price-badge badge-sale-sm">일반할인가</span>
+                <span class="price-sale">22,400원</span>
+              </div>
+              <div class="price-row">
+                <span class="price-badge badge-vip-sm">VIP혜택가</span>
+                <span class="price-vip">18,200원</span>
+              </div>
+            </div>
+            <div class="product-meta">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(657)</span>
+            </div>
+          </div>
+          <button class="btn-cart-v2">구매하기</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑨ 앱 프로모션 -->
+  <section class="app-promo">
+    <div class="container app-promo-inner">
+      <div class="app-promo-text">
+        <span class="section-label light">PAWLY APP</span>
+        <h2>반려동물 건강을<br/>앱으로 관리하세요</h2>
+        <p>pawly 앱으로 식사 기록, 건강 체크, 예방접종 일정까지.<br/>스마트한 펫 라이프의 시작입니다.</p>
+        <div class="app-badges">
+          <a href="#" class="app-badge">
+            <span>🍎</span> App Store
+          </a>
+          <a href="#" class="app-badge">
+            <span>▶</span> Google Play
+          </a>
+        </div>
+      </div>
+      <div class="app-promo-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="app-screen-content">
+              <div class="app-stat">
+                <span class="app-stat-icon">❤️</span>
+                <span>건강점수 98점</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-icon">🍖</span>
+                <span>오늘 식사 완료</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-icon">🏃</span>
+                <span>산책 32분</span>
+              </div>
+              <div class="app-stat">
+                <span class="app-stat-icon">💊</span>
+                <span>영양제 복용 완료</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑩ CSR - 1004 프로젝트 -->
+  <section class="csr-section">
+    <div class="container csr-inner">
+      <div class="csr-text">
+        <span class="section-label">1004 PROJECT</span>
+        <h2>구조 반려동물과<br/>함께합니다</h2>
+        <p>pawly는 매출의 1%를 유기동물 보호소에 기부합니다.<br/>구매 한 번이 구조 동물의 하루가 됩니다.</p>
+        <div class="csr-stats">
+          <div class="csr-stat">
+            <span class="csr-stat-num">1,004+</span>
+            <span class="csr-stat-label">입양 성공</span>
+          </div>
+          <div class="csr-stat">
+            <span class="csr-stat-num">32개</span>
+            <span class="csr-stat-label">제휴 보호소</span>
+          </div>
+          <div class="csr-stat">
+            <span class="csr-stat-num">₩128M</span>
+            <span class="csr-stat-label">누적 기부금</span>
+          </div>
+        </div>
+        <a href="#" class="btn-dark">자세히 알아보기</a>
+      </div>
+      <div class="csr-visual">
+        <div class="csr-img-grid">
+          <div class="csr-img-card">🐕</div>
+          <div class="csr-img-card">🐈</div>
+          <div class="csr-img-card large">🐾</div>
+          <div class="csr-img-card">🐩</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑪ 뉴스레터 -->
+  <section class="newsletter">
+    <div class="container newsletter-inner">
+      <div class="newsletter-text">
+        <span class="section-label light">NEWSLETTER</span>
+        <h2>특별한 소식을<br/>가장 먼저 받아보세요</h2>
+        <p>신상품 출시, VIP 전용 프로모션, 반려동물 케어 팁을 이메일로 보내드립니다.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="이메일 주소를 입력하세요" />
+        <button type="submit">구독하기</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ⑫ 푸터 -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">pawly</a>
+        <p>우리 아이에게 최고의 것만.<br/>프리미엄 반려동물용품 전문몰</p>
+        <div class="social-links">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">YouTube</a>
+          <a href="#" class="social-link">Blog</a>
+        </div>
+        <div class="cert-badges">
+          <span class="cert-badge">SSL 보안</span>
+          <span class="cert-badge">개인정보보호</span>
+          <span class="cert-badge">에스크로</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>쇼핑</h5>
+          <a href="#">강아지용품</a>
+          <a href="#">고양이용품</a>
+          <a href="#">사료/간식</a>
+          <a href="#">IoT 기기</a>
+          <a href="#">베스트셀러</a>
+        </div>
+        <div class="footer-col">
+          <h5>멤버십</h5>
+          <a href="#">VIP 혜택 안내</a>
+          <a href="#">정기구독</a>
+          <a href="#">pawly 앱</a>
+          <a href="#">포인트 안내</a>
+        </div>
+        <div class="footer-col">
+          <h5>고객지원</h5>
+          <a href="#">공지사항</a>
+          <a href="#">FAQ</a>
+          <a href="#">1:1 문의</a>
+          <a href="#">교환/반품</a>
+        </div>
+        <div class="footer-col">
+          <h5>회사</h5>
+          <a href="#">회사소개</a>
+          <a href="#">1004 프로젝트</a>
+          <a href="#">채용</a>
+          <a href="#">개인정보처리방침</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 pawly. All rights reserved. | 사업자등록번호: 123-45-67890 | 대표: 홍길동 | 통신판매업신고: 2026-서울-0001</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
